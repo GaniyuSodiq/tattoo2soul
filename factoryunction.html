@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Function</title>
+</head>
+<body>
+    <h1>Factory Function</h1>
+</body>
+<script>
+    // CONSTRUCTOR
+    // const Person = function(name, age){
+    //     this.name = name
+    //     this.age = age
+    // }
+    function Person (name, age){
+        this.name = name
+        this.age = age
+    }
+    // ADD A METHOD TO THE OBJ CONSTRUCTOR
+    Person.prototype.sayName = function(){
+        console.log(this.name + " is " + this.age + " years old.")
+    }
+    // USE THE FUNCTION
+    const ade = new Person("Ade", 10)
+    ade.name
+    ade.age
+    ade.sayName()
+</script>
+</html>
