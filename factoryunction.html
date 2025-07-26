@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factory Function</title>
 </head>
+
 <body>
     <h1>Factory Function</h1>
 </body>
@@ -14,12 +16,12 @@
     //     this.name = name
     //     this.age = age
     // }
-    function Person (name, age){
+    function Person(name, age) {
         this.name = name
         this.age = age
     }
     // ADD A METHOD TO THE OBJ CONSTRUCTOR
-    Person.prototype.sayName = function(){
+    Person.prototype.sayName = function () {
         console.log(this.name + " is " + this.age + " years old.")
     }
     // USE THE FUNCTION
@@ -28,17 +30,17 @@
     ade.age
     ade.sayName() // Ade is 10 years old.
 
-    function ConstructorAdd (nation){
+    function ConstructorAdd(nation) {
         this.nation = nation
     }
-    ConstructorAdd.prototype.sayNation = function(){
+    ConstructorAdd.prototype.sayNation = function () {
         console.log("Up Naija")
     }
     //ConstructorAdd.prototype = Object.create(Person.prototype) // let ConstructorAdd prototype inherit Person prototype
     Object.setPrototypeOf(ConstructorAdd.prototype, Person.prototype)
 
 
-    function PersonNation (name, age, nation){
+    function PersonNation(name, age, nation) {
         Person.call(this, name, age) // copy the code in Person constructor here
         ConstructorAdd.call(this, nation) // copy the code in ConstructorAdd constructor here
         this.badge = "Made in Nigeria"
@@ -46,7 +48,7 @@
     Object.setPrototypeOf(PersonNation.prototype, ConstructorAdd.prototype) // let PersonNation prototype inherit ConstructorAdd prototype
     // PersonNation.prototype = Object.create(ConstructorAdd.prototype) // this is another way you can link the protoypes
 
-    PersonNation.prototype.myDetails = function(){
+    PersonNation.prototype.myDetails = function () {
         console.log(`My name is ${this.name} and i am ${this.age} years old. I am from ${this.nation}. ${this.badge}`)
     }
 
@@ -54,17 +56,44 @@
     const amirah = new PersonNation("Amirah", 3, "Nigeria") // this new keyword can really be a problem 😆
     amirah.myDetails() // My name is Amirah and i am 3 years old. I am from Nigeria. Made in Nigeria
     amirah.sayName() // Amirah is 3 years old.
-    console.log(amirah.badge ) // Made in Nigeria
+    console.log(amirah.badge) // Made in Nigeria
     amirah.sayNation() // Up Naija
-    // ade.sayNation() // ERROR
+    // ade.sayNation() // ERROR 
 
-
+    console.log("🙌🙌🙌##### FACTORY FUNCTION PART STARTS HERE #####")
     // ✅FACTORY FUNCTION
-    const PersonFF = (name, age)=>{
-        const sayName = ()=>{console.log(name + " is " + age + " years old. FF")}
-        return {name, age, sayName}
+    const PersonFF = (name, age) => {
+        const sayName = () => { console.log(name + " is " + age + " years old. FF") }
+        return { name, age, sayName }
     }
     const niyi = PersonFF("Niyi", 17)
     niyi.sayName() // Niyi is 17 years old. FF
+
+    const ConstructorAddFF = (name, age, nation) => {
+        // const hello = PersonFF(name, age)
+        // return {nation, hello}
+        badge = "💖 Made in Nigeria"
+        const myDetails = ()=> console.log(`My name is ${name} and i am ${age} years old. I am from ${nation}. ${badge}`)
+        prototypea = PersonFF(name, age)
+        return Object.assign({}, prototypea, { nation, myDetails })
+    }
+
+    const adisa = ConstructorAddFF("Adisa", 24, "Saudi")
+    // adisa.hello.sayName()
+    adisa.sayName()
+    console.log(adisa.nation)
+
+    const PersonNationFF = (name, age, nation)=>{
+        prototype = ConstructorAddFF(name, age, nation)
+        const allow = ()=> console.log(`Allow ${name}, to enter ${nation}`)
+        return Object.assign({}, prototype, {allow})
+    }
+
+    const yinka = PersonNationFF("Olayinka", 33, "USA")
+    yinka.sayName() // Olayinka is 33 years old. FF
+    // this is so beautiful and easy to use. i can access method in PersonFF
+    yinka.myDetails()
+    yinka.allow() // Allow Olayinka, to enter USA
 </script>
+
 </html>
