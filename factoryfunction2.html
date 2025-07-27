@@ -10,7 +10,6 @@
 <body>
     <h1>SECOND FACTORY FUNCTION</h1>
     <script>
-        console.log("🙌🙌🙌                                 🙌🙌🙌")
         console.log("🙌🙌🙌##### CONSTRUCTOR PART STARTS HERE #####")
 
         function School(school, year) {
@@ -29,7 +28,62 @@
 
         const sade = new Pupil("Sade Ogunsanya", 20, "OAU Ife", 1966)
         console.log(sade.school)
-        sade.mySchool()
+        sade.mySchool() // The name of my school is OAU Ife established in 1966
+
+        console.log("                                 ")
+        console.log("🙌🙌🙌##### FACTORY FUNCTION PART STARTS HERE #####")
+
+        function SchoolFF(school, year) {
+            mySchool = () => console.log(`The name of my school is ${school} established in ${year}`)
+
+            return { mySchool }
+        }
+
+        function PupilFF(name, age, school, year) {
+            prototype = SchoolFF(school, year) // connects Pupil ff to School ff
+            return Object.assign({}, prototype)
+        }
+
+        const malik = PupilFF("Malik", 12, "IDGS", 1960)
+        malik.mySchool() // The name of my school is IDGS established in 1960
+
+        console.log("                                 ")
+        console.log("🙌🙌🙌##### GAME PART STARTS HERE #####")
+
+        function fightGame(name, level) {
+            let health = level * 2
+            getName = () => name
+            getLevel = () => level
+
+            const die = () => {
+                //console.log(`oh no! ${getName()} is dead!`)
+            }
+
+            const damage = x => {
+                health -= x
+                if (health <= 0) {
+                    die()
+                }
+            }
+
+            const attack = (enemy) => {
+                if (enemy.getLevel() > level) {
+                    console.log(`${enemy.getName()} attacked ${getName()}`)
+                    damage(1)
+                } else if (enemy.getLevel() < level) {
+                    console.log(`${getName()} attacked ${enemy.getName()}`)
+                    enemy.damage(1)
+                }
+            }
+
+            return { attack, damage, getName, getLevel }
+        }
+
+        const adunni = fightGame("Adunni", 3)
+        const devil = fightGame("Devil", 10)
+        console.log(adunni.getName())
+        adunni.attack(devil)
+
     </script>
 </body>
 
