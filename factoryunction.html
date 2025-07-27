@@ -133,6 +133,30 @@
     const JonnyCage = game("JonnyCage", 1)
     ShaoKang.attack(JonnyCage)
     JonnyCage.attack(ShaoKang)
+
+    console.log("🙌🙌🙌##### IIFE #####")
+    const calculator = ((a, b) => {
+        const add = (a, b) => a + b
+        const sub = (a, b) => a - b
+        const mul = (a, b) => a * b
+        const div = (a, b) => a / b
+        return { add, sub, mul, div }
+    })()
+
+    console.log(calculator.add(10, 20))
+    console.log(calculator.sub(10, 20))
+    console.log(calculator.mul(10, 20))
+    console.log(calculator.div(10, 20))
+
+    console.log("🙌🙌🙌##### DESTRUCTURING #####")
+    let x, y, z;
+    [x, y, z] = [1, 2, 3]
+    console.log(x, y, z)
+
+    // let a, b, c;
+    const obj = {prop1 : 10, prop2 : 20, prop3 : 30 }
+    const {a, b, c} = obj;
+    console.log(a, b, c)
 </script>
 
 </html>
