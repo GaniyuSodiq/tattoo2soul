@@ -73,7 +73,7 @@
         // const hello = PersonFF(name, age)
         // return {nation, hello}
         badge = "💖 Made in Nigeria"
-        const myDetails = ()=> console.log(`My name is ${name} and i am ${age} years old. I am from ${nation}. ${badge}`)
+        const myDetails = () => console.log(`My name is ${name} and i am ${age} years old. I am from ${nation}. ${badge}`)
         prototypea = PersonFF(name, age)
         return Object.assign({}, prototypea, { nation, myDetails })
     }
@@ -83,10 +83,10 @@
     adisa.sayName()
     console.log(adisa.nation)
 
-    const PersonNationFF = (name, age, nation)=>{
+    const PersonNationFF = (name, age, nation) => {
         prototype = ConstructorAddFF(name, age, nation)
-        const allow = ()=> console.log(`Allow ${name}, to enter ${nation}`)
-        return Object.assign({}, prototype, {allow})
+        const allow = () => console.log(`Allow ${name}, to enter ${nation}`)
+        return Object.assign({}, prototype, { allow })
     }
 
     const yinka = PersonNationFF("Olayinka", 33, "USA")
@@ -94,6 +94,38 @@
     // this is so beautiful and easy to use. i can access method in PersonFF
     yinka.myDetails()
     yinka.allow() // Allow Olayinka, to enter USA
+
+    console.log("🙌🙌🙌##### FACTORY FUNCTION GAME #####")
+    const game = (name, level) => {
+        let health = level * 2
+        const getLevel = () => level
+        const getName = () => name
+        const getHealth = ()=> health
+        const die = () => {
+            // Oh no
+        }
+
+        const damage = (x) => {
+            health -= x
+            if (health <= 0) {
+                die()
+            }
+        }
+
+        const attack = (enemy) => {
+            if (enemy.getLevel > level) {
+                damage(1)
+                console.log(`${enemy.getName()} has attacked ${getName()}. ${getName()}"s health remains: ${getHealth()}`)
+            } else {
+                enemy.damage(1)
+                console.log(`${getName()} has attacked ${enemy.getName()}. ${enemy.getName()}"s health remains: ${enemy.getHealth()}`)
+            }
+        }
+        return { getLevel, getName, attack, damage, getHealth }
+    }
+    const liu = game("Liu", 10)
+    const sindel = game("Sindel", 5)
+    liu.attack(sindel)
 </script>
 
 </html>
