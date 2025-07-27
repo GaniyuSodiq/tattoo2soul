@@ -100,9 +100,9 @@
         let health = level * 2
         const getLevel = () => level
         const getName = () => name
-        const getHealth = ()=> health
+        const getHealth = () => health
         const die = () => {
-            // Oh no
+            console.log(`Oh no! ${getName()} is dead`)
         }
 
         const damage = (x) => {
@@ -113,19 +113,26 @@
         }
 
         const attack = (enemy) => {
-            if (enemy.getLevel > level) {
+            if (enemy.getLevel() > level) {
                 damage(1)
                 console.log(`${enemy.getName()} has attacked ${getName()}. ${getName()}"s health remains: ${getHealth()}`)
-            } else {
+            }
+            if (enemy.getLevel() < level) {
                 enemy.damage(1)
                 console.log(`${getName()} has attacked ${enemy.getName()}. ${enemy.getName()}"s health remains: ${enemy.getHealth()}`)
             }
         }
         return { getLevel, getName, attack, damage, getHealth }
     }
-    const liu = game("Liu", 10)
-    const sindel = game("Sindel", 5)
+    const liu = game("Liu", 2)
+    const sindel = game("Sindel", 1)
     liu.attack(sindel)
+    sindel.attack(liu)
+
+    const ShaoKang = game("ShaoKang", 2)
+    const JonnyCage = game("JonnyCage", 1)
+    ShaoKang.attack(JonnyCage)
+    JonnyCage.attack(ShaoKang)
 </script>
 
 </html>
