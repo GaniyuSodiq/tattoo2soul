@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2ND FF TATTOO</title>
+</head>
+
+<body>
+    <h1>SECOND FACTORY FUNCTION</h1>
+    <script>
+        console.log("🙌🙌🙌                                 🙌🙌🙌")
+        console.log("🙌🙌🙌##### CONSTRUCTOR PART STARTS HERE #####")
+
+        function School(school, year) {
+            this.school = school
+            this.year = year
+        }
+        School.prototype.mySchool = function () {
+            console.log(`The name of my school is ${this.school} established in ${this.year}`)
+        }
+        function Pupil(name, age, school, year) {
+            School.call(this, school, year) // connects Pupil constructor to School constructor
+            this.name = name
+            this.age = age
+        }
+        Object.setPrototypeOf(Pupil.prototype, School.prototype)  // connects Pupil prototype to School prototype
+
+        const sade = new Pupil("Sade Ogunsanya", 20, "OAU Ife", 1966)
+        console.log(sade.school)
+        sade.mySchool()
+    </script>
+</body>
+
+</html>
