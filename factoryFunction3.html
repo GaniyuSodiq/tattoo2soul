@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory function 3</title>
+</head>
+<body>
+    <h1>FACTORY FUNCTION 3</h1>
+    <script>
+        console.log("                       ")
+        console.log("-----------------------CONSTRUCTOR PART------------------------")
+
+        function UnitCon(unitName, size){
+            this.unitName = unitName
+            this.size = size
+        }
+
+        const eus = new UnitCon("EUS", 19)
+        console.log(eus.size)
+
+        UnitCon.prototype.sayStuff = function(){
+            return (`Our unit name is: ${this.unitName} and we are ${this.size} members.`)
+        }
+
+        console.log(eus.sayStuff()) // Our unit name is: EUS and we are 19 members.
+
+
+        function Staff(staffName, age, unitName, size){
+            UnitCon.call(this, unitName, size)
+            this.staffName = staffName
+            this.age = age
+        }
+        Object.setPrototypeOf(Staff.prototype, UnitCon.prototype)
+
+        Staff.prototype.sayData = function(){
+            console.log(`My name is ${this.staffName} and ${this.sayStuff()}`) // 'new' is crazy
+        }
+        const esther = new Staff("Esther", 27, "EUS", 19)// My name is Esther and Our unit name is: EUS and we are 19 members.
+        esther.sayData()
+
+
+    </script>
+</body>
+</html>

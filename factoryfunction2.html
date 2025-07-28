@@ -75,11 +75,11 @@
 
             const attack = (enemy) => {
                 if (enemy.getLevel() > level) {
-                    console.log(`${enemy.getName()} attacked ${getName()}`)
+                    console.log(`${enemy.getName()} attacked ${name}`)
                     damage(1)
                 }
                 if (enemy.getLevel() < level) {
-                    console.log(`${getName()} attacked ${enemy.getName()}`)
+                    console.log(`${name} attacked ${enemy.getName()}`)
                     enemy.damage(1)
                 }
             }
