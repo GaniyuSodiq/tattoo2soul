@@ -17,10 +17,10 @@
         }
 
         const eus = new UnitCon("EUS", 19)
-        console.log(eus.size)
+        console.log(eus['size']) // 19
 
         UnitCon.prototype.sayStuff = function(){
-            return (`Our unit name is: ${this.unitName} and we are ${this.size} members.`)
+            return (`Our unit name is: ${this.unitName} and we have ${this.size} members.`)
         }
 
         console.log(eus.sayStuff()) // Our unit name is: EUS and we are 19 members.
@@ -36,8 +36,11 @@
         Staff.prototype.sayData = function(){
             console.log(`My name is ${this.staffName} and ${this.sayStuff()}`) // 'new' is crazy
         }
-        const esther = new Staff("Esther", 27, "EUS", 19)// My name is Esther and Our unit name is: EUS and we are 19 members.
-        esther.sayData()
+        const esther = new Staff("Esther", 27, "Software Engineering", 82)
+        
+        // esther.sayData() // My name is Esther and Our unit name is: EUS and we are 19 members.
+        esther["sayData"]() // My name is Esther and Our unit name is: EUS and we are 19 members.
+
 
 
     </script>
