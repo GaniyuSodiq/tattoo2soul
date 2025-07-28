@@ -50,7 +50,8 @@
         console.log("                                 ")
         console.log("🙌🙌🙌##### GAME PART STARTS HERE #####")
 
-        function fightGame(name, level) {
+
+        const fightGame = (name, level) => {
             let health = level * 2
             getName = () => name
             getLevel = () => level
@@ -70,7 +71,8 @@
                 if (enemy.getLevel() > level) {
                     console.log(`${enemy.getName()} attacked ${getName()}`)
                     damage(1)
-                } else if (enemy.getLevel() < level) {
+                }
+                if (enemy.getLevel() < level) {
                     console.log(`${getName()} attacked ${enemy.getName()}`)
                     enemy.damage(1)
                 }
@@ -84,6 +86,42 @@
         console.log(adunni.getName())
         adunni.attack(devil)
 
+        /*
+        const game = (name, level) => {
+            const getName = () => name
+            const getLevel = () => level
+            let health = level * 2
+
+            const die = ()=> {
+                // Oh no!
+            }
+
+            const damage = x => {
+                health -= x
+                if (health <= 0){
+                    die()
+                }
+            }
+
+            const attack = (enemy)=>{
+                if (enemy.getLevel() > level){
+                    damage(1)
+                    console.log(enemy.getName() + " attaked " + getName())
+                }
+                if (level > enemy.getLevel()){
+                    enemy.damage(1)
+                    console.log(getName() + " attacked " + enemy.getName())
+                }
+            }
+
+            return { getName, getLevel, damage, attack }
+        }
+
+        const aminat = game("Aminat", 10)
+        const esu = game("Esu", 5)
+
+        aminat.attack(esu) // Aminat attacked Esu
+        */
     </script>
 </body>
 
