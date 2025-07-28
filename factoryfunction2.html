@@ -53,8 +53,14 @@
 
         const fightGame = (name, level) => {
             let health = level * 2
+            /* THIS IS THE CAUSE OF THE PROBLEM
+            i did not initiate the fn with 'const'
             getName = () => name
             getLevel = () => level
+            */
+
+            const getName = () => name
+            const getLevel = () => level
 
             const die = () => {
                 //console.log(`oh no! ${getName()} is dead!`)
@@ -81,7 +87,7 @@
             return { attack, damage, getName, getLevel }
         }
 
-        const adunni = fightGame("Adunni", 3)
+        const adunni = fightGame("Adunni", 300)
         const devil = fightGame("Devil", 10)
         console.log(adunni.getName())
         adunni.attack(devil)
