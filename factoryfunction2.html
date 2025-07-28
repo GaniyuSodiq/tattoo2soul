@@ -128,6 +128,27 @@
 
         aminat.attack(esu) // Aminat attacked Esu
         */
+
+        console.log("                                 ")
+        console.log("🙌🙌🙌##### IIFE PART STARTS HERE #####")
+
+        const calculator = (() => {
+            const add = (a, b) => console.log(a + b)
+            const mul = (a, b) => console.log(a * b)
+            const div = (a, b) => a / b
+            const sub = (a, b) => a - b
+            return { add, sub, mul, div }
+        })()
+        /*
+                const calculator = {
+                    add : add
+                    mul : mul
+                    div : div
+                    sub : sub 
+                }
+        */
+
+        calculator.mul(700, 4)
     </script>
 </body>
 
