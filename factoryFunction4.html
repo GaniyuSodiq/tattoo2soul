@@ -42,6 +42,27 @@
         california.printCountryName() // USA
         california.detailsOfCountry() // The name of the Country is USA and it gained its independence in 1820
         console.log(california.stateName) // California
+
+        console.log("----------------FACTORY FUNCTION------------------")
+
+        const CountryConFF = (countryName, yearOfIn)=>{
+            const printCountryName = ()=> console.log(countryName)
+            const printCountryDetails = ()=> console.log(`The name of the Country is ${countryName} and it gained its independence in ${yearOfIn}`)
+            return {printCountryName, printCountryDetails}
+        }
+
+        const togo = CountryConFF("Togo", 1966)
+        togo.printCountryDetails()
+
+        const StateFF = function(stateName, stateYear, countryName, yearOfIn){
+            const ountryConFF = CountryConFF(countryName, yearOfIn)
+            const printStateName = function () { console.log(stateName) }
+            return Object.assign({}, ountryConFF, {printStateName})
+        }
+
+        const ogun = StateFF("Ogun", 1982, "Nigeria", 1960)
+        ogun.printStateName()
+        ogun.printCountryDetails()
     </script>
 </body>
 
