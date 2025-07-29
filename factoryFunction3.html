@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factory function 3</title>
 </head>
+
 <body>
     <h1>FACTORY FUNCTION 3</h1>
     <script>
         console.log("                       ")
         console.log("-----------------------CONSTRUCTOR PART------------------------")
 
-        function UnitCon(unitName, size){
+        function UnitCon(unitName, size) {
             this.unitName = unitName
             this.size = size
         }
@@ -19,30 +21,51 @@
         const eus = new UnitCon("EUS", 19)
         console.log(eus['size']) // 19
 
-        UnitCon.prototype.sayStuff = function(){
+        UnitCon.prototype.sayStuff = function () {
             return (`Our unit name is: ${this.unitName} and we have ${this.size} members.`)
         }
 
-        console.log(eus.sayStuff()) // Our unit name is: EUS and we are 19 members.
+        console.log(eus.sayStuff()) // Our unit name is: EUS and we have 19 members.
 
 
-        function Staff(staffName, age, unitName, size){
+        function Staff(staffName, age, unitName, size) {
             UnitCon.call(this, unitName, size)
             this.staffName = staffName
             this.age = age
         }
         Object.setPrototypeOf(Staff.prototype, UnitCon.prototype)
 
-        Staff.prototype.sayData = function(){
-            console.log(`My name is ${this.staffName} and ${this.sayStuff()}`) // 'new' is crazy
+        Staff.prototype.sayData = function () {
+            console.log(`My name is ${this.staffName} and ${this.sayStuff()}`)
         }
-        const esther = new Staff("Esther", 27, "Software Engineering", 82)
-        
-        // esther.sayData() // My name is Esther and Our unit name is: EUS and we are 19 members.
-        esther["sayData"]() // My name is Esther and Our unit name is: EUS and we are 19 members.
+        const esther = new Staff("Esther", 27, "Software Engineering", 82) // 'new' is crazy still
+
+        // esther.sayData() // My name is Esther and Our unit name is: EUS and we have 19 members.
+        esther["sayData"]() // My name is Esther and Our unit name is: EUS and we have 19 members.
 
 
+        console.log("                       ")
+        console.log("-----------------------FACTORY FUNCTION PART------------------------")
 
+        function UnitFF(unitName, size) {
+            const myStuff = () => `Our unit name is: ${unitName} and we have ${size} members.`
+            return { myStuff }
+        }
+
+        function StaffFF(staffName, age, unitName, size) {
+            const prototype = UnitFF(unitName, size)
+            const sayData = () => console.log(`My name is ${staffName} and ${prototype.myStuff()}`)
+            return Object.assign({}, prototype, { sayData, staffName })
+        }
+
+        const abisoye = StaffFF("Olubukola Abisoye", 38, "End User Support", 24)
+        abisoye.sayData()
+        console.log(abisoye.myStuff())
+        console.log(abisoye.staffName)
+
+        console.log("                       ")
+        console.log("-----------------------FACTORY FUNCTION PART------------------------")
     </script>
 </body>
+
 </html>
