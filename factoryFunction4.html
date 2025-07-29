@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Function 4</title>
+</head>
+
+<body>
+    <h1>FACTORY FUNCTION 4</h1>
+    <script>
+
+        console.log("----------------CONSTRUCTOR------------------")
+
+        const CountryCon = function (countryName, yearOfIn) {
+            this.countryName = countryName
+            this.yearOfIn = yearOfIn
+            this.printCountryName = function () { console.log(this.countryName) }
+        }
+
+        const nigeria = new CountryCon("Nigeria", 1960)
+
+        CountryCon.prototype.detailsOfCountry = function () {
+            console.log(`The name of the Country is ${this.countryName} and it gained its independence in ${this.yearOfIn}`)
+        }
+
+        nigeria.detailsOfCountry() // The name of the Country is Nigeria and it gained its independence in 1960
+
+        const State = function (stateName, stateYear, countryName, yearOfIn) { // constructor has to initiated in actual 'function'
+            CountryCon.call(this, countryName, yearOfIn)
+            this.stateYear = stateYear
+            this.stateName = stateName
+            this.printStateName = function () { console.log(this.stateName) }
+        }
+        Object.setPrototypeOf(State.prototype, CountryCon.prototype)
+
+        nigeria.printCountryName() // Nigeria
+
+        const california = new State("California", 1846, "USA", 1776)
+        california.printStateName() // California
+        california.printCountryName() // USA
+        california.detailsOfCountry() // The name of the Country is USA and it gained its independence in 1820
+        console.log(california.stateName) // California
+    </script>
+</body>
+
+</html>
