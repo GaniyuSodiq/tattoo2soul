@@ -11,7 +11,7 @@
     <h1>FACTORY FUNCTION 3</h1>
     <script>
         console.log("                       ")
-        console.log("-----------------------CONSTRUCTOR PART------------------------")
+        console.log("-----------------------🥇CONSTRUCTOR PART🥇------------------------")
 
         function UnitCon(unitName, size) {
             this.unitName = unitName
@@ -45,7 +45,7 @@
 
 
         console.log("                       ")
-        console.log("-----------------------FACTORY FUNCTION PART------------------------")
+        console.log("-----------------------🥇FACTORY FUNCTION PART🥇------------------------")
 
         function UnitFF(unitName, size) {
             const myStuff = () => `Our unit name is: ${unitName} and we have ${size} members.`
@@ -64,7 +64,44 @@
         console.log(abisoye.staffName)
 
         console.log("                       ")
-        console.log("-----------------------FACTORY FUNCTION PART------------------------")
+        console.log("-----------------------🥇ATTACK GAME PART🥇------------------------")
+
+        function fighter(name, level) {
+            let health = level * 2
+            const getName = () => name
+            const getLevel = () => level
+
+            const die = () => {
+                console.log(`Oh no 😖. ${name} has died`)
+            }
+
+            const damage = x => {
+                health -= x
+                if (health <= 0) {
+                    die()
+                }
+            }
+
+            const attack = enemy => {
+                if (enemy.getLevel() > level) {
+                    console.log(enemy.getName() + " has attacked " + name)
+                    damage(1)
+                }
+                if (enemy.getLevel() < level) {
+                    console.log(name + " has attacked " + enemy.getName())
+                    enemy.damage(1)
+                }
+            }
+
+            return {getLevel, getName, damage, attack}
+        }
+
+        const Sodiq = fighter("Sodiq", 33)
+        const Ota = fighter("Ota", 1)
+
+        Ota.attack(Sodiq)
+        Sodiq.attack(Ota)
+
     </script>
 </body>
 
