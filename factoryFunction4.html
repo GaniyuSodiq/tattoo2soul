@@ -74,8 +74,32 @@
             const die = ()=>{
                 // Oh no
             }
+
+            const damage = x =>{
+                health -= x
+                if (health <=0 ){
+                    die()
+                }
+            }
+
+            const attack = enemy => {
+                if (enemy.getLevel() > level){
+                    damage(1)
+                    console.log(`${enemy.getName()} has attacked ${name}`)
+                }
+                if (enemy.getLevel() < level){
+                    enemy.damage(1)
+                    console.log(`${name} just attacked ${enemy.getName()}`)
+                }
+            }
             
+            return {attack, getName, getLevel, damage}
         }
+
+        const wale = Fighter("Wale", 5)
+        const omota = Fighter("Omota", 2)
+
+        omota.attack(wale)
     </script>
 </body>
 
