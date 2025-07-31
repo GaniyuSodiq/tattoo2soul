@@ -9,17 +9,27 @@
     <h1>Modular Pattern 1</h1>
     <script>
         const Formatter = (function(){
+            let timesRun = 0
+
             const log = (message)=> console.log(`[${Date.now()}] Logger: ${message}`)
+
+            const setTimesRun = ()=>{
+                log("Setting Times Run")
+                ++timesRun
+            }
 
             const makeUpperCase = (text)=>{
                 log("Making Upper Case")
                 return text.toUpperCase()
             }
 
-            return {makeUpperCase}
+            return {makeUpperCase, timesRun}
         })()
 
         console.log(Formatter.makeUpperCase("wunmi"))
+        console.log(Formatter.makeUpperCase("wunmi"))
+        console.log(Formatter.makeUpperCase("wunmi"))
+        console.log(Formatter.timesRun)
     </script>
 </body>
 </html>
