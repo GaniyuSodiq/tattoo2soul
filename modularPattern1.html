@@ -11,6 +11,8 @@
         const Formatter = (function(){
             let timesRun = 0
 
+            const getTimesRun = ()=> timesRun
+
             const log = (message)=> console.log(`[${Date.now()}] Logger: ${message}`)
 
             const setTimesRun = ()=>{
@@ -19,17 +21,19 @@
             }
 
             const makeUpperCase = (text)=>{
+                setTimesRun()
                 log("Making Upper Case")
                 return text.toUpperCase()
             }
 
-            return {makeUpperCase, timesRun}
+            return {makeUpperCase, timesRun, getTimesRun}
         })()
 
-        console.log(Formatter.makeUpperCase("wunmi"))
-        console.log(Formatter.makeUpperCase("wunmi"))
-        console.log(Formatter.makeUpperCase("wunmi"))
-        console.log(Formatter.timesRun)
+        console.log(Formatter.makeUpperCase("wunmi")) // WUNMI
+        console.log(Formatter.makeUpperCase("wunmi")) // WUNMI
+        console.log(Formatter.makeUpperCase("wunmi")) // WUNMI
+        console.log(Formatter.timesRun) // 0
+        console.log(Formatter.getTimesRun()) // 3
     </script>
 </body>
 </html>
