@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modular Pattern 1</title>
 </head>
+
 <body>
     <h1>Modular Pattern 1</h1>
+    <p id="target"></p>
     <script>
-        const Formatter = (function(){
+        const Formatter = (function () {
             let timesRun = 0
 
-            const getTimesRun = ()=> timesRun
+            const getTimesRun = () => timesRun
 
-            const log = (message)=> console.log(`[${Date.now()}] Logger: ${message}`)
+            const log = (message) => console.log(`[${Date.now()}] Logger: ${message}`)
 
-            const setTimesRun = ()=>{
+            const setTimesRun = () => {
                 log("Setting Times Run")
-                ++timesRun
+                timesRun++
             }
 
-            const makeUpperCase = (text)=>{
+            const makeUpperCase = (text) => {
                 setTimesRun()
                 log("Making Upper Case")
                 return text.toUpperCase()
             }
 
-            return {makeUpperCase, timesRun, getTimesRun}
+            return { makeUpperCase, timesRun, getTimesRun }
         })()
 
         console.log(Formatter.makeUpperCase("wunmi")) // WUNMI
@@ -34,6 +37,32 @@
         console.log(Formatter.makeUpperCase("wunmi")) // WUNMI
         console.log(Formatter.timesRun) // 0
         console.log(Formatter.getTimesRun()) // 3
+
+        const documentMock = (() => ({
+            querySelector: (selector) => ({
+                innerHTML: null,
+            }),
+        }))();
+        
+        const Formatter2 = (function (doc) {
+            const log = (message) => console.log(`[${Date.now()}] Logger: ${message}`)
+
+            const getToDOM = (selector, message) => {
+                if (!!doc && "querySelector" in doc) {
+                    document.querySelector(selector).textContent = message
+                }
+            }
+
+            const makeUpperCase = (text) => {
+                log("Making Upper Case")
+                return text.toUpperCase()
+            }
+
+            return { makeUpperCase, getToDOM }
+        })(documentMock || document)
+
+        Formatter2.getToDOM("#target", "HELLO WORLD")
     </script>
 </body>
+
 </html>
