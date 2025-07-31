@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Pattern 1</title>
+</head>
+<body>
+    <h1>Modular Pattern 1</h1>
+    <script>
+        const Formatter = (function(){
+            const log = (message)=> console.log(`[${Date.now()}] Logger: ${message}`)
+
+            const makeUpperCase = (text)=>{
+                log("Making Upper Case")
+                return text.toUpperCase()
+            }
+
+            return {makeUpperCase}
+        })()
+
+        console.log(Formatter.makeUpperCase("wunmi"))
+    </script>
+</body>
+</html>
