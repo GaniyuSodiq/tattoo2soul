@@ -38,12 +38,12 @@
         console.log(Formatter.timesRun) // 0
         console.log(Formatter.getTimesRun()) // 3
 
-        const documentMock = (() => ({
+        const documentMock = () => ({
             querySelector: (selector) => ({
                 innerHTML: null,
             }),
-        }))();
-        
+        })
+
         const Formatter2 = (function (doc) {
             const log = (message) => console.log(`[${Date.now()}] Logger: ${message}`)
 
@@ -63,6 +63,69 @@
 
         Formatter2.getToDOM("#target", "HELLO WORLD")
     </script>
+    /*
+
+    Sure! Let's break down the JavaScript code snippet:
+
+    ```javascript
+    const documentMock = (() => ({
+    querySelector: (selector) => ({
+    innerHTML: null,
+    }),
+    }))();
+    ```
+
+    ### What it does:
+
+    This snippet defines and immediately invokes an **IIFE** (Immediately Invoked Function Expression), which returns an
+    object. The resulting object is assigned to the constant `documentMock`.
+
+    ---
+
+    ### Line-by-line explanation:
+
+    #### 1. `(() => ({ ... }))();`
+
+    * This is an **arrow function** that is immediately **invoked**.
+    * It returns an object — `{ querySelector: ... }`.
+
+    #### 2. `querySelector: (selector) => ({ innerHTML: null })`
+
+    * This is a mock implementation of the DOM method `querySelector`.
+    * It accepts a `selector` (like `".my-class"` or `"#my-id"`) as an argument.
+    * It returns an object with an `innerHTML` property set to `null`.
+
+    ---
+
+    ### Resulting behavior:
+
+    You now have a `documentMock` object that behaves like this:
+
+    ```javascript
+    const el = documentMock.querySelector("#some-id");
+    console.log(el.innerHTML); // null
+    ```
+
+    ---
+
+    ### Purpose:
+
+    This is likely used in **testing** environments or **mocking** scenarios where you want to simulate part of the DOM
+    (specifically `document.querySelector`) **without actually interacting with the real DOM**.
+
+    It's a stub, meaning:
+
+    * It doesn't select any real element.
+    * It always returns the same structure regardless of the selector.
+
+    ---
+
+    ### Summary:
+
+    `documentMock` is a lightweight mock of the `document` object, providing a fake `querySelector` method that returns
+    an object with `innerHTML: null`. This is typically useful for unit tests or running JavaScript in non-browser
+    environments (like Node.js) where the real `document` doesn't exist.
+
 </body>
 
 </html>
