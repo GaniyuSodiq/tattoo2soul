@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modular Pattern 2</title>
 </head>
+
 <body>
     <h1>Modular Pattern 2</h1>
     <p class="target"></p>
     <script>
-        const Formatter = (function(){
+        const Formatter = (function () {
             const log = message => console.log(`[${Date.now()}] Logger: ${message}`)
 
             let timesRun = 0
 
-            const getTimesRun = ()=> timesRun
+            const getTimesRun = () => timesRun
 
-            const setTimesRun = ()=>{
+            const setTimesRun = () => {
                 log("Setting Times Run")
                 timesRun++
             }
 
-            const makeUpperCase = text =>{
+            const makeUpperCase = text => {
                 log("Making Text To Upper Case")
                 setTimesRun()
                 return text.toUpperCase()
             }
 
-            return {makeUpperCase, timesRun, getTimesRun}
+            return { makeUpperCase, timesRun, getTimesRun }
         })()
         console.log(Formatter.makeUpperCase("amirah"))
         console.log(Formatter.makeUpperCase("opeyemi"))
@@ -35,19 +37,25 @@
         console.log(Formatter.timesRun) // 0
         console.log(Formatter.getTimesRun()) // 3
 
-        const Formatter2 = (function(){
+        const Formatter2 = (function (doc) {
             const log = message => console.log(`Time: [${Date.now()}] Logger: ${message}`)
-            const getToDOM = (selector, message) =>  document.querySelector(selector).textContent = message
 
-            const makeUpperCase = text =>{
+            const getToDOM = (selector, message) => {
+                if(!!doc && "querySelector" in doc){
+                    doc.querySelector(selector).textContent = message
+                }
+            }
+
+            const makeUpperCase = text => {
                 log("Making Text to Uppercase")
                 return text.toUpperCase()
             }
 
-            return {getToDOM, makeUpperCase}
-        })()
+            return { getToDOM, makeUpperCase }
+        })(document)
 
         Formatter2.getToDOM(".target", "Hello Lady Amirah")
     </script>
 </body>
+
 </html>
