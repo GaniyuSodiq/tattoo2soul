@@ -9,6 +9,29 @@
         body {
             text-align: center;
         }
+        #peopleSection{
+            width: 50%;
+            margin: 0 auto;
+        }
+        div > input {
+            padding: 15px;
+        }
+        input + button {
+            background-color: blue;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            color: whitesmoke;
+        }
+        ul {
+            
+            padding: 0%;
+        }
+        li {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
     </style>
 </head>
 
@@ -21,8 +44,6 @@
         </div>
     </div>
     <script>
-        // array to keep the names
-        const people = []
 
         // cache DOM
         const peopleSection = document.querySelector("#peopleSection")
