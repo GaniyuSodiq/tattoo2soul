@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People List Vanilla</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Names of People</h2>
+    <div id="peopleSection">
+        <div><input type="text"><button>Add Name</button></div>
+        <div>
+            <ul></ul>
+        </div>
+    </div>
+    <script>
+        // array to keep the names
+        const people = []
+
+        // cache DOM
+        const peopleSection = document.querySelector("#peopleSection")
+        const inputEl = peopleSection.querySelector("input")
+        const addBtn = peopleSection.querySelector("button")
+        const ulEl = peopleSection.querySelector("ul")
+
+        // render the names
+        addBtn.addEventListener("click", () => {
+            const newName = document.createElement("span")
+            const newNameDel = document.createElement("button")
+            const newNameLi = document.createElement("li")
+            newName.textContent = inputEl.value
+            newNameDel.textContent = "❌"
+            newNameLi.appendChild(newName)
+            newNameLi.appendChild(newNameDel)
+            ulEl.appendChild(newNameLi)
+            inputEl.value = ""
+            
+            // delete a name
+            newNameDel.addEventListener("click", () => {
+                newNameLi.remove()
+            })
+        })
+    </script>
+</body>
+
+</html>
