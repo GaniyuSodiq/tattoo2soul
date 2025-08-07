@@ -1,5 +1,5 @@
 const peopleModule = {
-    people: [],
+    people: ["Sodiq"],
 
     init: function () {
         this.cacheDom()
@@ -11,6 +11,7 @@ const peopleModule = {
         this.addBtn = peopleSection.querySelector("button")
         this.inputEl = peopleSection.querySelector("input")
         this.ulEl = peopleSection.querySelector("ul")
+        this.delName = peopleSection.querySelector(".delName")
     },
 
     render: function(){
@@ -22,6 +23,7 @@ const peopleModule = {
 
             newName.textContent = name
             newNameDel.textContent = "❌"
+            newNameDel.classList.add("delName")
 
             newNameLi.appendChild(newName)
             newNameLi.appendChild(newNameDel)
@@ -32,12 +34,19 @@ const peopleModule = {
 
     bindEvents: function(){
         this.addBtn.addEventListener("click", this.addPerson.bind(this))
+        this.delName.addEventListener("click", this.deletePerson.bind(this))
     },
 
     addPerson: function(){
         this.people.push(this.inputEl.value)
         this.inputEl.value = ""
         this.render()
+    },
+
+    deletePerson: function(event){
+        const nameToRemove = event.target.closest("li")
+        nameToRemove.remove()
+        console.log("hello test")
     },
 }
 
