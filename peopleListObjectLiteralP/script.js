@@ -49,14 +49,20 @@ const peopleModule = {
             const nameToRemove = event.target.closest("li").querySelector("span").textContent
             console.log(nameToRemove)
             // the code below messed with me. it has to be IIFE. just decaration wont execute the fn, u knw that
-            const indexToRemove = (()=>{
-                for (let i = 0; i < this.people.length; i++){
-                    if (this.people[i] == nameToRemove){
-                        console.log(this.people[i])
-                        return i
-                    }
+            // const indexToRemove = (()=>{
+            //     for (let i = 0; i < this.people.length; i++){
+            //         if (this.people[i] == nameToRemove){
+            //             console.log(this.people[i])
+            //             return i
+            //         }
+            //     }
+            // })() .SEE ANOTHER WAY BELOW
+            let indexToRemove ;
+            for (i = 0; i < this.people.length; i++){
+                if (this.people[i] == nameToRemove){
+                    indexToRemove = i
                 }
-            })()
+            }
             this.people.splice(indexToRemove, 1)
             this.render()
         } else { return }
