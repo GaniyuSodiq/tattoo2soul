@@ -1,3 +1,5 @@
+import { stats } from "./stats"
+
 const peopleModule = {
     people: [],
 
@@ -28,7 +30,7 @@ const peopleModule = {
             newNameLi.appendChild(newName)
             newNameLi.appendChild(newNameDel)
             this.ulEl.appendChild(newNameLi)
-
+            stats.peopleCount(this.people.length)
         })
     },
 
