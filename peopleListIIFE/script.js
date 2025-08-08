@@ -1,4 +1,4 @@
-const peopleModule = (function(){
+const peopleModule = (function () {
     const people = []
 
     //cacheDOM
@@ -8,9 +8,9 @@ const peopleModule = (function(){
     const ulEl = peopleSection.querySelector("ul")
 
     // render
-    const render = ()=>{
+    const render = () => {
         ulEl.textContent = ""
-        people.forEach((name)=>{
+        people.forEach((name) => {
             const newName = document.createElement("span")
             const newNameDel = document.createElement("button")
             const newNameLi = document.createElement("li")
@@ -29,17 +29,26 @@ const peopleModule = (function(){
     ulEl.addEventListener("click", deletePerson)
 
 
-    function addPerson(){
+    function addPerson() {
         people.push(inputEl.value)
         inputEl.value = ""
         render()
     }
 
-    function deletePerson(event){
-        if (event.target.textContent == "❌"){
-            console.log("Delete btn in UL is clicked")
+    function deletePerson(event) {
+        if (event.target.textContent == "❌") {
+            const nameToRemove = event.target.closest("li").querySelector("span").textContent
+            let indexToRemove;
+            for (let i = 0; i < people.length; i++) {
+                if(people[i] == nameToRemove){
+                    indexToRemove = i
+                    break
+                }
+            }
+            people.splice(indexToRemove, 1)
+            render()
         } else {
             return
         }
-    } 
+    }
 })()
