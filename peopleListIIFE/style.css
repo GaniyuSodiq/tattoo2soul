@@ -1,0 +1,39 @@
+ body {
+     text-align: center;
+ }
+
+ #peopleSection, #statsSection {
+     width: 50%;
+     margin: 0 auto;
+ }
+
+ div>input {
+     padding: 15px;
+ }
+
+ input+button {
+     background-color: blue;
+     padding: 15px;
+     border: none;
+     border-radius: 10px;
+     color: whitesmoke;
+ }
+
+ ul {
+
+     padding: 0%;
+ }
+
+ li {
+     margin: 0 auto;
+     display: flex;
+     justify-content: space-around;
+ }
+
+ #statsSection{
+    background-color: darkslateblue;
+    color: aliceblue;
+    padding: 2px 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+ }
