@@ -2,7 +2,7 @@
      text-align: center;
  }
 
- #peopleSection {
+ #peopleSection, #statsSection {
      width: 50%;
      margin: 0 auto;
  }
@@ -28,4 +28,12 @@
      margin: 0 auto;
      display: flex;
      justify-content: space-around;
+ }
+
+ #statsSection{
+    background-color: darkslateblue;
+    color: aliceblue;
+    padding: 2px 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
  }
