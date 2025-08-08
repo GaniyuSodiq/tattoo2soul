@@ -1,5 +1,5 @@
 const peopleModule = (function () {
-    const people = []
+    const people = ["Estavo", "Tosin", "Palmer"]
 
     //cacheDOM
     const peopleSection = document.querySelector("#peopleSection")
@@ -24,31 +24,50 @@ const peopleModule = (function () {
         })
     }
 
-    // bindEvents
-    addBtn.addEventListener("click", addPerson)
-    ulEl.addEventListener("click", deletePerson)
+    // // bindEvents
+    // addBtn.addEventListener("click", addPerson)
+    // ulEl.addEventListener("click", deletePerson)
 
-
-    function addPerson() {
-        people.push(inputEl.value)
-        inputEl.value = ""
+    const addPerson = function (name) {
+        if (typeof name == "string") {
+            people.push(name)
+        } else {
+            people.push(inputEl.value)
+            inputEl.value = ""
+        }
         render()
     }
 
     function deletePerson(event) {
-        if (event.target.textContent == "❌") {
-            const nameToRemove = event.target.closest("li").querySelector("span").textContent
-            let indexToRemove;
-            for (let i = 0; i < people.length; i++) {
-                if(people[i] == nameToRemove){
-                    indexToRemove = i
-                    break
-                }
-            }
-            people.splice(indexToRemove, 1)
-            render()
+        if (typeof event == "number") {
+            people.splice(event, 1)
         } else {
-            return
+            if (event.target.textContent == "❌") {
+                const nameToRemove = event.target.closest("li").querySelector("span").textContent
+                let indexToRemove;
+                for (let i = 0; i < people.length; i++) {
+                    if (people[i] == nameToRemove) {
+                        indexToRemove = i
+                        break
+                    }
+                }
+                people.splice(indexToRemove, 1)
+                
+            } else {
+                return
+            }
         }
+        render()
     }
+
+    // bindEvents
+    addBtn.addEventListener("click", addPerson)
+    ulEl.addEventListener("click", deletePerson)
+
+    return { addPerson, deletePerson, people }
 })()
+
+console.log(peopleModule)
+peopleModule.addPerson("Ajadi")
+console.log(peopleModule.people)
+peopleModule.deletePerson(0)
