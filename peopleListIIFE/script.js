@@ -8,10 +8,10 @@ const peopleModule = (function () {
     const addBtn = peopleSection.querySelector("button")
     const ulEl = peopleSection.querySelector("ul")
 
-
+    render()
 
     // render
-    const render = () => {
+    function render() {
         ulEl.textContent = ""
         people.forEach((name) => {
             const newName = document.createElement("span")
@@ -25,7 +25,7 @@ const peopleModule = (function () {
             newNameLi.appendChild(newNameDel)
             ulEl.appendChild(newNameLi)
         })
-        emit.pub(peopleChange, people.length)
+        emit.pub("peopleChange", people.length)
     }
 
     // // bindEvents

@@ -7,7 +7,7 @@ const stats = (function(){
     const statsSpan = statsSection.querySelector("span")
 
     // sunscribe to pubSub
-    emit.sub(peopleChange, getPeople)
+    emit.sub("peopleChange", getPeople)
 
     //render
     function render(){
