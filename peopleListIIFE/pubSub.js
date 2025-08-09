@@ -30,3 +30,5 @@ const emit = (function () {
 
     return { sub, off, pub }
 })()
+
+export {emit}

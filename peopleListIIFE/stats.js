@@ -1,9 +1,13 @@
+import { emit } from "./pubSub.js";
 const stats = (function(){
     let people = 0;
 
     // cacheDOM
     const statsSection = document.querySelector("#statsSection")
     const statsSpan = statsSection.querySelector("span")
+
+    // sunscribe to pubSub
+    emit.sub(peopleChange, getPeople)
 
     //render
     function render(){
@@ -19,4 +23,4 @@ const stats = (function(){
     return {getPeople}
 })()
 
-stats.getPeople(5)
+// stats.getPeople(5)

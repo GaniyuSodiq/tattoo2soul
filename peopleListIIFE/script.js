@@ -1,3 +1,4 @@
+import { emit } from "./pubSub.js"
 const peopleModule = (function () {
     const people = ["Estavo", "Tosin", "Palmer"]
 
@@ -6,6 +7,8 @@ const peopleModule = (function () {
     const inputEl = peopleSection.querySelector("input")
     const addBtn = peopleSection.querySelector("button")
     const ulEl = peopleSection.querySelector("ul")
+
+
 
     // render
     const render = () => {
@@ -22,13 +25,14 @@ const peopleModule = (function () {
             newNameLi.appendChild(newNameDel)
             ulEl.appendChild(newNameLi)
         })
+        emit.pub(peopleChange, people.length)
     }
 
     // // bindEvents
     // addBtn.addEventListener("click", addPerson)
     // ulEl.addEventListener("click", deletePerson)
 
-    const addPerson = function (name) {
+    function addPerson(name) {
         if (typeof name == "string") {
             people.push(name)
         } else {
