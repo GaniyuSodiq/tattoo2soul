@@ -1,6 +1,6 @@
 import { emit } from "./pubSub.js"
 const peopleModule = (function () {
-    const people = ["Estavo", "Tosin", "Palmer"]
+    const people = ["Estavo", "Tosin", "Palmer", "Alhamdullillhah"]
 
     //cacheDOM
     const peopleSection = document.querySelector("#peopleSection")
@@ -32,6 +32,7 @@ const peopleModule = (function () {
     // // bindEvents
     addBtn.addEventListener("click", addPerson)
     ulEl.addEventListener("click", deletePerson)
+
 
     // addPerson
     function addPerson(name) {
@@ -71,7 +72,6 @@ const peopleModule = (function () {
     return { addPerson, deletePerson }
 })()
 
-// console.log(peopleModule)
-// peopleModule.addPerson("Ajadi")
-// console.log(peopleModule.people)
-// peopleModule.deletePerson(0)
+console.log(peopleModule)
+peopleModule.addPerson("Ajadi")
+peopleModule.deletePerson(0)
