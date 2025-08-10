@@ -14,13 +14,18 @@ const stats = (function(){
         statsSpan.textContent = people
     }
 
+    function destroy(){
+        statsSection.remove()
+        emit.off("peopleChange", getPeople)
+    }
+
     function getPeople(data){
         people = data
         render()
     }
     //bindEvents
 
-    return {getPeople}
+    return {destroy}
 })()
 
 // stats.getPeople(5)

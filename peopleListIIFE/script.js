@@ -28,10 +28,12 @@ const peopleModule = (function () {
         emit.pub("peopleChange", people.length)
     }
 
-    // // bindEvents
-    // addBtn.addEventListener("click", addPerson)
-    // ulEl.addEventListener("click", deletePerson)
 
+    // // bindEvents
+    addBtn.addEventListener("click", addPerson)
+    ulEl.addEventListener("click", deletePerson)
+
+    // addPerson
     function addPerson(name) {
         if (typeof name == "string") {
             people.push(name)
@@ -42,6 +44,7 @@ const peopleModule = (function () {
         render()
     }
 
+    // delete Person
     function deletePerson(event) {
         if (typeof event == "number") {
             people.splice(event, 1)
@@ -56,7 +59,7 @@ const peopleModule = (function () {
                     }
                 }
                 people.splice(indexToRemove, 1)
-                
+
             } else {
                 return
             }
@@ -64,14 +67,11 @@ const peopleModule = (function () {
         render()
     }
 
-    // bindEvents
-    addBtn.addEventListener("click", addPerson)
-    ulEl.addEventListener("click", deletePerson)
 
-    return { addPerson, deletePerson, people }
+    return { addPerson, deletePerson }
 })()
 
-console.log(peopleModule)
-peopleModule.addPerson("Ajadi")
-console.log(peopleModule.people)
-peopleModule.deletePerson(0)
+// console.log(peopleModule)
+// peopleModule.addPerson("Ajadi")
+// console.log(peopleModule.people)
+// peopleModule.deletePerson(0)
