@@ -62,6 +62,10 @@
             newNameDel.textContent = "X"
             inputEl.value = " "
 
+            newNameDel.addEventListener("click", ()=>{
+                newNameLi.remove()
+            })
+
             newNameLi.appendChild(newName)
             newNameLi.appendChild(newNameDel) 
 
