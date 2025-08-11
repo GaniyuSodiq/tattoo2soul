@@ -55,7 +55,7 @@
 <body>
     <div id="statsModule">
         <div>
-            <p>Total number of people in the list is: <span>0</span></p>
+            <p>Total number of people in the list is: <span id="people-count">0</span></p>
         </div>
     </div>
     <div id="peopleModule">
@@ -72,6 +72,8 @@
         const buttonEl = peopleModule.querySelector("button")
         const ulEl = peopleModule.querySelector("ul")
 
+        const peopleCount = document.querySelector("#people-count")
+        let sum = 0;
         //bind Events
         buttonEl.addEventListener("click", () => {
             const newName = document.createElement("span")
@@ -84,12 +86,17 @@
 
             newNameDel.addEventListener("click", () => {
                 newNameLi.remove()
+                sum -= 1
+                peopleCount.textContent = sum
             })
 
             newNameLi.appendChild(newName)
             newNameLi.appendChild(newNameDel)
 
             ulEl.appendChild(newNameLi)
+
+            sum += 1
+            peopleCount.textContent = sum
         })
     </script>
 </body>
