@@ -34,6 +34,7 @@
             margin-left: 15px;
         }
     </style>
+    <script></script>
 </head>
 <body>
     <div id="statsModule">
@@ -43,5 +44,29 @@
         <div><input type="text" placeholder="Name ?"><button>Add Name</button></div>
         <div><ul></ul></div>
     </div>
+
+    <script>
+        //cacheDOM
+        const peopleModule = document.querySelector("#peopleModule")
+        const inputEl = peopleModule.querySelector("input")
+        const buttonEl = peopleModule.querySelector("button")
+        const ulEl = peopleModule.querySelector("ul")
+
+        //bind Events
+        buttonEl.addEventListener("click", ()=>{
+            const newName = document.createElement("span")
+            const newNameLi = document.createElement("li")
+            const newNameDel = document.createElement("button")
+
+            newName.textContent = inputEl.value
+            newNameDel.textContent = "X"
+            inputEl.value = " "
+
+            newNameLi.appendChild(newName)
+            newNameLi.appendChild(newNameDel) 
+
+            ulEl.appendChild(newNameLi)
+        })
+    </script>
 </body>
 </html>
