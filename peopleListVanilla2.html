@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>People List Vanilla 2</title>
     <style>
-        body{
+        body {
             text-align: center;
         }
 
-        #statsModule div{
+        #statsModule div {
             background-color: lightsalmon;
             display: inline-block;
             width: 50%;
@@ -19,30 +20,49 @@
             margin-bottom: 30px;
         }
 
-        #peopleModule input{
+        #peopleModule input {
             padding: 8px;
             border: none;
-            border-bottom: 1px solid black;
+            border-bottom: 3px solid black;
             border-radius: 5px;
         }
 
-        input + button{
+        input+button {
             padding: 10px;
             background-color: orange;
             border: none;
             border-radius: 5px;
             margin-left: 15px;
         }
+
+        ul {
+            padding: 0;
+            width: 30%;
+            margin: 10px auto;
+        }
+
+        li {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            /* border-bottom: 1px solid black; */
+            padding: 5px;
+        }
     </style>
     <script></script>
 </head>
+
 <body>
     <div id="statsModule">
-        <div><p>Total number of people in the list is: <span>0</span></p></div>
+        <div>
+            <p>Total number of people in the list is: <span>0</span></p>
+        </div>
     </div>
     <div id="peopleModule">
         <div><input type="text" placeholder="Name ?"><button>Add Name</button></div>
-        <div><ul></ul></div>
+        <div>
+            <ul></ul>
+        </div>
     </div>
 
     <script>
@@ -53,24 +73,25 @@
         const ulEl = peopleModule.querySelector("ul")
 
         //bind Events
-        buttonEl.addEventListener("click", ()=>{
+        buttonEl.addEventListener("click", () => {
             const newName = document.createElement("span")
             const newNameLi = document.createElement("li")
             const newNameDel = document.createElement("button")
 
             newName.textContent = inputEl.value
-            newNameDel.textContent = "X"
-            inputEl.value = " "
+            newNameDel.textContent = "❌"
+            inputEl.value = ""
 
-            newNameDel.addEventListener("click", ()=>{
+            newNameDel.addEventListener("click", () => {
                 newNameLi.remove()
             })
 
             newNameLi.appendChild(newName)
-            newNameLi.appendChild(newNameDel) 
+            newNameLi.appendChild(newNameDel)
 
             ulEl.appendChild(newNameLi)
         })
     </script>
 </body>
+
 </html>
