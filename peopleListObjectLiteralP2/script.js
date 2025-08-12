@@ -1,3 +1,5 @@
+import { stats } from "./stats.js"
+
 const peopleModule = {
     people: [],
 
@@ -33,6 +35,7 @@ const peopleModule = {
 
             this.ulel.appendChild(newNameLi)
         })
+        stats.getCount(this.people.length)
     },
 
     addPerson: function (name) {
