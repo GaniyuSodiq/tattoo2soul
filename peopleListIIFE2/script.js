@@ -1,3 +1,4 @@
+import { pubSub } from "./pubsub.js"
 const peopleModule = (function () {
     const people = []
     // c r i b
@@ -24,6 +25,7 @@ const peopleModule = (function () {
             newNameLi.appendChild(newNameDel)
             ulEl.appendChild(newNameLi)
         })
+        pubSub.pub("peopleChange", people.length)
     }
 
     //bind events
