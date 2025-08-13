@@ -20,9 +20,11 @@ const statsModule = (function(){
 
     function destroy(){
         statsBox.remove()
+        pubSub.off("peopleChange", getCount)
     }
 
     return {destroy}
 })()
 
 // export {statsModule}
+// statsModule.destroy()
