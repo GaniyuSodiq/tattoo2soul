@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four 1</title>
+</head>
+
+<body>
+    <script>
+        function Cell() {
+            let value = 0
+
+            const setValue = (player) => {
+                value = player
+            }
+
+            const getValue = () => value
+
+            return {
+                setValue,
+                getValue
+            }
+        }
+
+        function GameBoard() {
+            const rows = 6
+            const columns = 7
+            const board = []
+
+            for (let i = 0; i < rows; i++) {
+                board.push([])
+                for (let j = 0; j < columns; j++) {
+                    board[i].push(Cell())
+                }
+            }
+
+            const getBoard = () => board
+
+            const dropToken = (column, player) => {
+                const availableCellsRows = board.filter(row => row[column].getValue() === 0)
+
+                const availableRows = availableCellsRows.map(row => row[column].getValue())
+
+                console.log(availableRows)
+
+                if (!availableRows) return
+
+                const lowest = availableRows.length - 1
+
+                board[lowest][column].setValue(player)
+            }
+
+            const printBoard = () => {
+                const screenBoard = board.map(row => row.map(cell => cell.getValue()))
+                console.log(screenBoard)
+            }
+
+            return { getBoard, dropToken, printBoard }
+        }
+
+        game = GameBoard()
+        console.log(game.getBoard())
+        game.dropToken(1, 2)
+        game.printBoard()
+
+        function GameController(playerOne = "Player One", playerTwo = "Player Two"){
+            const board = GameBoard()
+
+        }
+    </script>
+</body>
+
+</html>
