@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four 2</title>
+</head>
+
+<body>
+    <script>
+        function Cell() {
+            let value = 0
+
+            const addToken = (player) => {
+                value = player
+            }
+
+            const getValue = () => value
+
+            return { addToken, getValue }
+        }
+
+        function GameBoard() {
+            const rows = 6
+            const columns = 7
+            const board = []
+
+            for (let i = 0; i < rows; i++) {
+                board.push([])
+                for (let j = 0; j < columns; j++) {
+                    board[i].push(Cell())
+                }
+            }
+
+            const getBoard = () => board
+
+            const dropToken = (column, player) => {
+                
+            }
+        }
+
+        function GameController() {
+
+        }
+    </script>
+</body>
+
+</html>
