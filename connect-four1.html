@@ -67,7 +67,15 @@
 
         function GameController(playerOne = "Player One", playerTwo = "Player Two"){
             const board = GameBoard()
+            const player = [{name: playerOne, token: 1}, {name: playerTwo, token: 2}]
 
+            let activePlayer = player[0]
+
+            const switchActivePlayer = ()=>{
+                activePlayer = activePlayer === player[0] ? player[1] : player[0]
+            }
+
+            const getActivePlayer = ()=> activePlayer
         }
     </script>
 </body>
