@@ -43,7 +43,7 @@
 
                 const availableRows = availableCellsRows.map(row => row[column].getValue())
 
-                console.log(availableRows)
+                // console.log(availableRows)
 
                 if (!availableRows) return
 
@@ -60,23 +60,41 @@
             return { getBoard, dropToken, printBoard }
         }
 
-        game = GameBoard()
-        console.log(game.getBoard())
-        game.dropToken(1, 2)
-        game.printBoard()
+        // game = GameBoard()
+        // console.log(game.getBoard())
+        // game.dropToken(1, 2)
+        // game.printBoard()
 
-        function GameController(playerOne = "Player One", playerTwo = "Player Two"){
+        function GameController(playerOne = "Player One", playerTwo = "Player Two") {
             const board = GameBoard()
-            const player = [{name: playerOne, token: 1}, {name: playerTwo, token: 2}]
+            const player = [{ name: playerOne, token: 1 }, { name: playerTwo, token: 2 }]
 
             let activePlayer = player[0]
 
-            const switchActivePlayer = ()=>{
+            const switchActivePlayer = () => {
                 activePlayer = activePlayer === player[0] ? player[1] : player[0]
             }
 
-            const getActivePlayer = ()=> activePlayer
+            const getActivePlayer = () => activePlayer
+
+            const playRound = (column) => {
+                console.log(`${getActivePlayer().name} played into ${column} column`)
+
+                board.dropToken(column, getActivePlayer().token)
+
+                board.printBoard()
+                
+                switchActivePlayer()
+            }
+
+            console.log(`LET'S PLAY CONNECT FOUR`)
+
+            return {playRound}
         }
+
+        const playGame = GameController()
+
+
     </script>
 </body>
 
