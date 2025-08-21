@@ -36,13 +36,52 @@
             const getBoard = () => board
 
             const dropToken = (column, player) => {
-                
+                const availableCellsRows = board.filter(row => row[column].getValue() === 0)
+
+                const availableRows = availableCellsRows.map(row => row[column].getValue())
+
+                if (!availableRows.length) return
+                //if (availableRows.length === 0) return
+
+                const lowest = availableRows.length - 1
+
+                board[lowest][column].addToken(player)
             }
+
+            const printBoard = () => {
+               const getCells = board.map(row => row.map(cell => cell.getValue()))
+               console.log(getCells)
+            }
+
+            return {dropToken, printBoard}
         }
 
-        function GameController() {
+        function GameController(playerOne = "Player One", playerTwo = "Player Two") {
+            const board = GameBoard()
+            const players = [{name: playerOne, token: 1}, {name: playerTwo, token: 2}]
 
+            let activePlayer = players[0]
+
+            const switchPlayer = ()=>{
+                activePlayer = activePlayer === players[0] ? players[1] : players[0]
+            }
+
+            const playRound = (column)=>{
+                console.log(`${activePlayer.name} drops a token into column ${column}...`)
+
+                board.dropToken(column, activePlayer.token)
+
+                board.printBoard()
+
+                switchPlayer()
+
+                console.log(`Next player is: ${activePlayer.name}`)
+            }
+
+            return {playRound}
         }
+
+        const letsPlay = GameController()
     </script>
 </body>
 
